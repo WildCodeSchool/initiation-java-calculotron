@@ -2,7 +2,7 @@
 
 ## 1. How to execute it
 
-You need to have the *Java Development Kit* installed. Type this command (only once) :
+You need to have the *Java Development Kit* and *JavaFX* installed. Type this command (only once) :
 
 ``` bash
 sudo apt install default-jdk openjfx
@@ -30,3 +30,5 @@ The button `C` clears the result screen.
 
 * The button `4` works but contains the text `#`. You need to replace it with `4`.
 * Only the addition works. Please fix the subtraction, multiplication and division.
+
+> You need to modify the Main.java file
