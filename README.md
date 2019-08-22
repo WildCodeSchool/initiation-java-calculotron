@@ -5,7 +5,7 @@
 You need to have the *Java Development Kit* installed. Type this command (only once) :
 
 ``` bash
-sudo apt install default-jdk
+sudo apt install default-jdk openjfx
 ```
 
 Then type the following command each time you want to execute the *Calculotron 3000* :
