@@ -10,8 +10,6 @@ import java.text.DecimalFormat;
 
 public class Main extends Application {
 
-    private static boolean mClear = false;
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -38,7 +36,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane root = new GridPane();
-
         root.setPadding(new Insets(30));
         root.setHgap(15);
         root.setVgap(15);
@@ -116,54 +113,23 @@ public class Main extends Application {
         root.add(minus, 3, 1);
         minus.setOnAction(event -> addOperator("-", field));
 
-        Button mult = new Button();
-        mult.setText("*");
-        mult.setPrefWidth(30);
-        root.add(mult, 3, 2);
-        mult.setOnAction(event -> addOperator("*", field));
+        Button multiply = new Button();
+        multiply.setText("*");
+        multiply.setPrefWidth(30);
+        root.add(multiply, 3, 2);
+        multiply.setOnAction(event -> addOperator("*", field));
 
-        Button div = new Button();
-        div.setText("/");
-        div.setPrefWidth(30);
-        root.add(div, 3, 3);
-        div.setOnAction(event -> addOperator("/", field));
+        Button divide = new Button();
+        divide.setText("/");
+        divide.setPrefWidth(30);
+        root.add(divide, 3, 3);
+        divide.setOnAction(event -> addOperator("/", field));
 
         Button equal = new Button();
         equal.setText("=");
         equal.setPrefWidth(30);
         root.add(equal, 3, 4);
-        equal.setOnAction(actionEvent -> {
-            String line = field.getText();
-            String[] operators = line.split("[+\\-*/]");
-            double a;
-            double b;
-            if (operators.length != 2) {
-                field.setText("ERROR");
-                mClear = true;
-            } else {
-                try {
-                    a = Integer.parseInt(operators[0]);
-                    b = Integer.parseInt(operators[1]);
-                } catch (NumberFormatException e) {
-                    field.setText("ERROR");
-                    mClear = true;
-                    return;
-                }
-                DecimalFormat df = new DecimalFormat("#.###");
-                if (line.contains("+")) {
-                    field.setText(df.format(addition(a, b)));
-                } else if (line.contains("-")) {
-                    field.setText(df.format(subtraction(a, b)));
-                } else if (line.contains("*")) {
-                    field.setText(df.format(multiplication(a, b)));
-                } else if (line.contains("/")) {
-                    field.setText(df.format(division(a, b)));
-                } else {
-                    field.setText("ERROR");
-                    mClear = true;
-                }
-            }
-        });
+        equal.setOnAction(actionEvent -> compute(field));
 
         Scene scene = new Scene(root, 214, 250);
         primaryStage.setTitle("Calculotron");
@@ -172,10 +138,39 @@ public class Main extends Application {
     }
 
     private void addOperator(String operator, TextField field) {
-        if (mClear) {
+        if (field.getText().contains("ERROR")) {
             field.setText("");
-            mClear = false;
         }
-        field.appendText(operator + "");
+        field.appendText(operator);
+    }
+
+    private static void compute(TextField field) {
+        String line = field.getText();
+        String[] operators = line.split("[+\\-*/]");
+        double a;
+        double b;
+        if (operators.length != 2) {
+            field.setText("ERROR");
+        } else {
+            try {
+                a = Double.parseDouble(operators[0]);
+                b = Double.parseDouble(operators[1]);
+            } catch (NumberFormatException e) {
+                field.setText("ERROR");
+                return;
+            }
+            DecimalFormat df = new DecimalFormat("#.###");
+            if (line.contains("+")) {
+                field.setText(df.format(addition(a, b)));
+            } else if (line.contains("-")) {
+                field.setText(df.format(subtraction(a, b)));
+            } else if (line.contains("*")) {
+                field.setText(df.format(multiplication(a, b)));
+            } else if (line.contains("/")) {
+                field.setText(df.format(division(a, b)));
+            } else {
+                field.setText("ERROR");
+            }
+        }
     }
 }
