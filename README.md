@@ -31,4 +31,4 @@ The button `C` clears the result screen.
 * The button `4` works but contains the text `#`. You need to replace it with `4`.
 * Only the addition works. Please fix the subtraction, multiplication and division.
 
-> You need to modify the Main.java file
+> You need to modify the `Main.java` file
