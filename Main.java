@@ -60,7 +60,7 @@ public class Main extends Application {
         root.add(num9, 2, 1);
         num9.setOnAction(event -> addOperator("9", field));
 
-        // TODO : fix numpad 3
+        // TODO : fix numpad 4
         Button num4 = new Button();
         num4.setText("#");
         root.add(num4, 0, 2);
