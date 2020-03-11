@@ -1,5 +1,7 @@
 # Calculotron 3000
 
+Clone this repository and open the project's folder.
+
 ## 1. How to execute it
 
 You need to have the *Java Development Kit* and *JavaFX* installed. Type this command (only once) :
