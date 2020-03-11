@@ -6,8 +6,17 @@ Clone this repository and open the project's folder.
 
 You need to have the *Java Development Kit* and *JavaFX* installed. Type this command (only once) :
 
+* On Debian/Ubuntu/Mint :
+
 ``` bash
 sudo apt install default-jdk openjfx
+```
+
+* On OSX :
+
+``` bash
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk11
 ```
 
 Then type the following command each time you want to execute the *Calculotron 3000* :
